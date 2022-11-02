@@ -41,4 +41,11 @@ router.post('/login', function(req, res) {
     }
   });
 });
+
+router.get('/login', jwtAuth.tokenCheck, function(req, res) {
+  res.status(200).send({
+    decoded: req.decoded
+  });
+});
+
 module.exports = router;

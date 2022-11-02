@@ -21,6 +21,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/api/members', require('./routes/members.js'));
+app.use('/api/boards', require('./routes/boards.js'));
 
 app.listen(port, function() {
   console.log('start');

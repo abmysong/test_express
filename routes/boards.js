@@ -21,8 +21,11 @@ router.post('/', jwtAuth.tokenCheck, function(req, res) {
 });
 
 router.get('/', function(req, res) {
+  const orderBy = req.query.orderBy || 'board_pk';
+  const orderByType = req.query.orderByType || 'desc';
   const sql = `
-    select b.*, m.id from test_boards b inner join test_members m on b.member_pk = m.member_pk;
+    select b.*, m.id from test_boards b inner join test_members m on b.member_pk = m.member_pk
+    order by ${orderBy} ${orderByType};
   `;
   db.query(sql, [], function(error, rows) {
     if (!error || db.error(req, res, error)) {
